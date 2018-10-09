@@ -1,6 +1,7 @@
-import Mylife from './mylife'
+import MyLife from './MyLife'
+import Spokeo from './Spokeo'
 
 export const SID_MAP = {
-    'https://www.mylife.com/': Mylife,
-    'https://www.spokeo.com/': null
+    'https://www.mylife.com': MyLife,
+    'https://www.spokeo.com': Spokeo
 }
