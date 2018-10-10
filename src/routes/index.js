@@ -3,7 +3,7 @@ import { SID_MAP } from '../scrapers/sidMap'
 const appRouter = function (app) {
     /**
      * POST /query body params:
-     * sid - site url, for example https://www.spokeo.com/
+     * sid - site url, for example https://www.spokeo.com
      */
 
     app.post('/query', function ({ body }, res) {
