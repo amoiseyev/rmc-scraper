@@ -4,7 +4,7 @@
   "description": "",
   "main": "src",
   "scripts": {
-    "start:debug": "DEBUG=nightmare:actions* nodemon --inspect-brk .",
+    "start:debug": "DEBUG=* nodemon --inspect-brk --inspect-port=0 .",
     "start": "DEBUG=nightmare:actions* nodemon --inspect --inspect-port=0 .",
     "prod": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,6 +19,11 @@
     "babel-runtime": "^6.26.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-    "nightmare": "^3.0.1"
+    "fs": "^0.0.1-security",
+    "http": "^0.0.0",
+    "https": "^1.0.0",
+    "nightmare": "^3.0.1",
+    "node-gzip": "^1.1.2",
+    "xml-parser": "^1.2.1"
   }
 }

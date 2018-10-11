@@ -14,3 +14,5 @@ export const getNightmareConfig = () => {
 }
 
 export const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+
+export const appPath = process.cwd()
