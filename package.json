@@ -5,7 +5,7 @@
   "main": "src",
   "scripts": {
     "start:debug": "DEBUG=nightmare:actions* nodemon --inspect-brk .",
-    "start": "DEBUG=nightmare:actions* nodemon --inspect .",
+    "start": "DEBUG=nightmare:actions* nodemon --inspect --inspect-port=0 .",
     "prod": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
