@@ -47,15 +47,12 @@ class MyLife {
         })
     }
 
-    static run = async (queryData) => {
-        const dataLinks = await MyLife.getDataEntryPoints(queryData.sid)
+    static scrapPersonData = async (nightmare, dataLinks, results = []) => {
+        const link = dataLinks.shift()
+        console.log(link)
 
-        const nightmare = Nightmare(getNightmareConfig())
-
-        console.log(dataLinks[0])
-
-        nightmare
-            .goto(dataLinks[0])
+        const personData = await nightmare
+            .goto(link)
             .evaluate((link) => {
                 const nameAgeLine = document.querySelector('.profile-information-name-age').innerText
                 const name = nameAgeLine.split(',')[0].split(' ')
@@ -65,20 +62,34 @@ class MyLife {
                 personData.id = link
                 personData.firstName = name[0]
                 personData.lastName = name[name.length - 1]
-                personData.age = nameAgeLine.split(',')[1].trim()
+                personData.age = nameAgeLine.includes(',') ? nameAgeLine.split(',')[1].trim() : '' // optional value
                 personData.city = location[0]
                 personData.state = location[1].trim()
 
                 return personData
-            }, dataLinks[0])
-            .end()
-            .then((results) => {
-                console.log('result: ', results)
-                return results
-            })
-            .catch((error) => {
-                console.error('Search failed:', error)
-            })
+            }, link)
+
+        results.push(personData)
+
+        if (dataLinks.length) {
+            return MyLife.scrapPersonData(nightmare, dataLinks, results)
+        } else {
+            return results
+        }
+    }
+
+    static run = async (queryData) => {
+        const dataLinks = await MyLife.getDataEntryPoints(queryData.sid)
+
+        const nightmare = Nightmare(getNightmareConfig())
+
+        const results = await MyLife.scrapPersonData(nightmare, dataLinks)
+
+        nightmare.catch((error) => {
+            console.error('Search failed:', error)
+        })
+
+        console.log('result: ', results)
     }
 }
 
