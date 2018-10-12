@@ -1,6 +1,6 @@
 {
     "parser": "babel-eslint",
-    "extends": [ "standard" ],
+    "extends": [ "airbnb-base" ],
     "env": {
         "jest": true,
         "jasmine": true
@@ -8,6 +8,22 @@
     "rules": {
         "indent": [ "warn", 4 ],
         "no-debugger": 0,
-        "no-console": 0
-    }
+        "no-console": 0,
+        "camelcase": 0,
+        "quotes": [2, "single"],
+        "global-require": 0,
+        "max-len": [1, 120, 2, {"ignoreComments": true}],
+        "no-cond-assign": [2, "except-parens"],
+        "radix": 0,
+        "space-infix-ops": 0,
+        "no-unused-vars": [1, {"vars": "local", "args": "none"}],
+        "default-case": 0,
+        "no-else-return": 0,
+        "no-param-reassign": 0,
+        "no-plusplus": 0,
+        "linebreak-style": 0
+    },
+    "globals": {
+        "document": true
+      }
 }
